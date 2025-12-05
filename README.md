@@ -126,7 +126,7 @@ content ='''
 
 </body>
 </html>
-```
+'''
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         print("Get request received...")
@@ -140,7 +140,8 @@ httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
 
 ## OUTPUT:
-<img width="617" height="231" alt="Screenshot 2025-12-05 195449" src="https://github.com/user-attachments/assets/919f14db-6600-4520-b4cb-625b7327ec1e" />
+![alt text](<Screenshot 2025-12-02 105430.png>)
+![alt text](<Screenshot 2025-12-02 105505.png>)
 
 
 ## RESULT:
