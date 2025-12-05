@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date:01/12/25
+## Date:1/12/25
 
 ## AIM:
 To develop a simple webserver to serve html pages and display the list of protocols in TCP/IP Protocol Suite.
@@ -36,40 +36,60 @@ Start the server script and check for errors.
 Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
 
 ## PROGRAM:
-from http.server import HTTPServer, BaseHTTPRequestHandler
-content = """
+
+from http.server import HTTPServer,BaseHTTPRequestHandler
+content ='''
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCP/IP Protocol Table</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         table {
-            width: 60%;
             border-collapse: collapse;
-            margin: auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
+            width: 80%;
+            max-width: 900px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
         }
         caption {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            font-size: 28px;
             font-weight: bold;
+            padding: 15px;
+            background: #ff7eb3;
+            color: white;
+            letter-spacing: 1px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 15px;
+        }
+        th {
+            background: #00c6ff;
+            color: white;
+            text-transform: uppercase;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f8ff;
+        }
+        tr:hover {
+            background-color: #ffeaa7;
+            transform: scale(1.02);
+            transition: 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -79,51 +99,48 @@ content = """
         <caption>TCP/IP Protocol Layers</caption>
         <tr>
             <th>Layer</th>
-            <th>Description</th>
-            <th>Protocols</th>
+            <th>Functions</th>
+            <th>Examples</th>
         </tr>
         <tr>
             <td>Application Layer</td>
-            <td>Provides network services to end-users and applications</td>
+            <td>User interaction, data formatting, services</td>
             <td>HTTP, FTP, SMTP, DNS</td>
         </tr>
         <tr>
             <td>Transport Layer</td>
-            <td>Responsible for end-to-end communication and error checking</td>
+            <td>Reliable data transfer, flow control</td>
             <td>TCP, UDP</td>
         </tr>
         <tr>
             <td>Internet Layer</td>
-            <td>Handles logical addressing and routing of data packets</td>
+            <td>Logical addressing, routing</td>
             <td>IP, ICMP, ARP</td>
         </tr>
         <tr>
-            <td>Network Access / Link Layer</td>
-            <td>Manages physical addressing and media access</td>
-            <td>Ethernet, Wi-Fi, PPP</td>
+            <td>Network Access Layer</td>
+            <td>Physical addressing, data transmission</td>
+            <td>Ethernet, Wi-Fi</td>
         </tr>
     </table>
 
 </body>
 </html>
-
-"""
-class myhandler(BaseHTTPRequestHandler):
+```
+class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("request received")
+        print("Get request received...")
         self.send_response(200)
-        self.send_header('content-type', 'text/html; charset=utf-8')
+        self.send_header("content-type", "text/html")
         self.end_headers()
         self.wfile.write(content.encode())
-server_address = ('',8000)
-httpd = HTTPServer(server_address,myhandler)
-print("my webserver is running...")
+print("This is my webserver")
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
 
 ## OUTPUT:
-
-
-<img width="1027" height="795" alt="Screenshot 2025-11-30 104612" src="https://github.com/user-attachments/assets/f168d33f-3f36-4dd7-873e-77ed519ce8bb" />
+<img width="617" height="231" alt="Screenshot 2025-12-05 195449" src="https://github.com/user-attachments/assets/919f14db-6600-4520-b4cb-625b7327ec1e" />
 
 
 ## RESULT:
